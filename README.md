@@ -1,4 +1,4 @@
-# e-commerce-backend
+# E-Commerce-Backend
 
 ![License Badge](https://img.shields.io/github/license/andykb9b13/e-commerce-backend)
 
