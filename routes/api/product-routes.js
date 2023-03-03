@@ -5,9 +5,6 @@ const { Product, Category, Tag, ProductTag } = require("../../models");
 
 // get all products
 router.get("/", async (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
-  // TODO Still need to get tag data somehow
   try {
     const products = await Product.findAll({
       include: [{ model: Category }, { model: Tag, through: ProductTag }],
@@ -18,7 +15,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// get one product
+// find a single product by its `id`
 router.get("/:id", async (req, res) => {
   try {
     const product = await Product.findByPk(req.params.id, {
@@ -32,8 +29,6 @@ router.get("/:id", async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
 });
 
 // create new product
@@ -110,6 +105,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
+// delete one product by its `id` value
 router.delete("/:id", async (req, res) => {
   try {
     const product = await Product.destroy({
@@ -125,8 +121,6 @@ router.delete("/:id", async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-
-  // delete one product by its `id` value
 });
 
 module.exports = router;
